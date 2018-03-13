@@ -40,3 +40,31 @@ class TestLazyDictionary(TestCase):
         # second call checks lazydict.CircularReferenceError is not raised.
         self.assertRaises(ZeroDivisionError, d.__getitem__, 'division')
         self.assertEqual(d.states['division'], 'error')
+
+    def test_lazydict_arg_assigment(self):
+        default = dict(a=1, b=2, c=3)
+        lazy = lazydict.LazyDictionary(a=1, b=2, c=3)
+
+        vals = {
+            "a": 1,
+            "b": 2,
+            "c": 3
+        }
+
+        for key, val in vals.iteritems():
+            self.assertEqual(default[key], val)
+            self.assertEqual(lazy[key], val)
+
+    def test_lazydict_kwarg_assigment(self):
+        default = dict({"a": 1, "b": 2, "c": 3})
+        lazy = lazydict.LazyDictionary({"a": 1, "b": 2, "c": 3})
+
+        vals = {
+            "a": 1,
+            "b": 2,
+            "c": 3
+        }
+
+        for key, val in vals.iteritems():
+            self.assertEqual(default[key], val)
+            self.assertEqual(lazy[key], val)
