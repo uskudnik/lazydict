@@ -31,10 +31,13 @@ class ConstantRedefinitionError(LazyDictionaryError):
     pass
 
 class LazyDictionary(MutableMapping):
-    def __init__(self, values={}):
+    def __init__(self, *args, **kwargs):
         self.lock = RLock()
-        self.values = copy(values)
-        self.states = {}
+        self.states = dict()
+
+        self.values = dict()
+        self.values.update(dict(*args))
+        self.values.update(**kwargs)
         for key in self.values:
             self.states[key] = 'defined'
 

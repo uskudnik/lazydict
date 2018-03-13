@@ -51,7 +51,7 @@ class TestLazyDictionary(TestCase):
             "c": 3
         }
 
-        for key, val in vals.iteritems():
+        for key, val in vals.items():
             self.assertEqual(default[key], val)
             self.assertEqual(lazy[key], val)
 
@@ -65,6 +65,6 @@ class TestLazyDictionary(TestCase):
             "c": 3
         }
 
-        for key, val in vals.iteritems():
+        for key, val in vals.items():
             self.assertEqual(default[key], val)
             self.assertEqual(lazy[key], val)
